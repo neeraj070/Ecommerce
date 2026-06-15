@@ -1,0 +1,43 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\mekal\OneDrive\Desktop\New folder\.npmrc
+5 silly config load:file:C:\Users\mekal\.npmrc
+6 silly config load:file:C:\Users\mekal\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".\\.npm-cache" "--loglevel" "warn"
+9 verbose logfile logs-max:10 dir:C:\Users\mekal\OneDrive\Desktop\New folder\.npm-cache\_logs\2026-06-15T10_13_07_470Z-
+10 verbose logfile C:\Users\mekal\OneDrive\Desktop\New folder\.npm-cache\_logs\2026-06-15T10_13_07_470Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest concurrently@^9.1.2
+15 silly packumentCache full:https://registry.npmjs.org/concurrently cache-miss
+16 http fetch GET https://registry.npmjs.org/concurrently attempt 1 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+17 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+18 http fetch GET https://registry.npmjs.org/concurrently attempt 2 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+19 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+20 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+21 http fetch GET https://registry.npmjs.org/concurrently attempt 3 failed with UNABLE_TO_VERIFY_LEAF_SIGNATURE
+22 silly placeDep ROOT concurrently@ OK for: mern-ecommerce@1.0.0 want: ^9.1.2
+23 verbose type system
+24 verbose stack FetchError: request to https://registry.npmjs.org/concurrently failed, reason: unable to verify the first certificate
+24 verbose stack     at ClientRequest.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\minipass-fetch\lib\index.js:130:14)
+24 verbose stack     at ClientRequest.emit (node:events:518:28)
+24 verbose stack     at emitErrorEvent (node:_http_client:104:11)
+24 verbose stack     at _destroy (node:_http_client:898:9)
+24 verbose stack     at onSocketNT (node:_http_client:918:5)
+24 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:91:21)
+25 error code UNABLE_TO_VERIFY_LEAF_SIGNATURE
+26 error errno UNABLE_TO_VERIFY_LEAF_SIGNATURE
+27 error request to https://registry.npmjs.org/concurrently failed, reason: unable to verify the first certificate
+28 silly unfinished npm timer reify 1781518388521
+29 silly unfinished npm timer reify:loadTrees 1781518388524
+30 verbose cwd C:\Users\mekal\OneDrive\Desktop\New folder
+31 verbose os Windows_NT 10.0.26200
+32 verbose node v22.16.0
+33 verbose npm  v10.9.2
+34 verbose exit 1
+35 verbose code 1
+36 error A complete log of this run can be found in: C:\Users\mekal\OneDrive\Desktop\New folder\.npm-cache\_logs\2026-06-15T10_13_07_470Z-debug-0.log

@@ -1,0 +1,67 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.16.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\mekal\OneDrive\Desktop\New folder\.npmrc
+5 silly config load:file:C:\Users\mekal\.npmrc
+6 silly config load:file:C:\Users\mekal\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".\\.npm-cache" "--strict-ssl" "false" "--loglevel" "warn"
+9 verbose logfile logs-max:10 dir:C:\Users\mekal\OneDrive\Desktop\New folder\.npm-cache\_logs\2026-06-15T10_15_20_521Z-
+10 verbose logfile C:\Users\mekal\OneDrive\Desktop\New folder\.npm-cache\_logs\2026-06-15T10_15_20_521Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly reify moves {}
+15 silly audit bulk request {
+15 silly audit   'ansi-regex': [ '5.0.1' ],
+15 silly audit   'ansi-styles': [ '4.3.0' ],
+15 silly audit   chalk: [ '4.1.2' ],
+15 silly audit   'supports-color': [ '7.2.0', '8.1.1' ],
+15 silly audit   cliui: [ '8.0.1' ],
+15 silly audit   'color-convert': [ '2.0.1' ],
+15 silly audit   'color-name': [ '1.1.4' ],
+15 silly audit   concurrently: [ '9.2.1' ],
+15 silly audit   'emoji-regex': [ '8.0.0' ],
+15 silly audit   escalade: [ '3.2.0' ],
+15 silly audit   'get-caller-file': [ '2.0.5' ],
+15 silly audit   'has-flag': [ '4.0.0' ],
+15 silly audit   'is-fullwidth-code-point': [ '3.0.0' ],
+15 silly audit   'require-directory': [ '2.1.1' ],
+15 silly audit   rxjs: [ '7.8.2' ],
+15 silly audit   'shell-quote': [ '1.8.3' ],
+15 silly audit   'string-width': [ '4.2.3' ],
+15 silly audit   'strip-ansi': [ '6.0.1' ],
+15 silly audit   'tree-kill': [ '1.2.2' ],
+15 silly audit   tslib: [ '2.8.1' ],
+15 silly audit   'wrap-ansi': [ '7.0.0' ],
+15 silly audit   y18n: [ '5.0.8' ],
+15 silly audit   yargs: [ '17.7.2' ],
+15 silly audit   'yargs-parser': [ '21.1.1' ]
+15 silly audit }
+16 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 693ms
+17 silly audit report {
+17 silly audit report   'shell-quote': [
+17 silly audit report     {
+17 silly audit report       id: 1120422,
+17 silly audit report       url: 'https://github.com/advisories/GHSA-w7jw-789q-3m8p',
+17 silly audit report       title: 'shell-quote quote() does not escape newlines in object .op values',
+17 silly audit report       severity: 'critical',
+17 silly audit report       vulnerable_versions: '>=1.1.0 <=1.8.3',
+17 silly audit report       cwe: [Array],
+17 silly audit report       cvss: [Object]
+17 silly audit report     }
+17 silly audit report   ]
+17 silly audit report }
+18 silly packumentCache corgi:https://registry.npmjs.org/shell-quote cache-miss
+19 http fetch GET 200 https://registry.npmjs.org/shell-quote 162ms (cache miss)
+20 silly packumentCache corgi:https://registry.npmjs.org/shell-quote set size:undefined disposed:false
+21 silly packumentCache corgi:https://registry.npmjs.org/concurrently cache-miss
+22 http fetch GET 200 https://registry.npmjs.org/concurrently 120ms (cache miss)
+23 silly packumentCache corgi:https://registry.npmjs.org/concurrently set size:undefined disposed:false
+24 verbose cwd C:\Users\mekal\OneDrive\Desktop\New folder
+25 verbose os Windows_NT 10.0.26200
+26 verbose node v22.16.0
+27 verbose npm  v10.9.2
+28 verbose exit 0
+29 info ok
