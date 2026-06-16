@@ -89,6 +89,43 @@ button {
   margin-bottom: 24px;
 }
 
+.topActions {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+}
+
+.dbStatus {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e1ddd3;
+  border-radius: 999px;
+  color: #635f58;
+  display: inline-flex;
+  font-size: 13px;
+  font-weight: 800;
+  min-height: 36px;
+  padding: 0 12px;
+  text-transform: capitalize;
+}
+
+.dbStatus::before {
+  background: #c2533e;
+  border-radius: 999px;
+  content: "";
+  height: 8px;
+  margin-right: 8px;
+  width: 8px;
+}
+
+.dbStatus.online {
+  color: #216842;
+}
+
+.dbStatus.online::before {
+  background: #2e9e5d;
+}
+
 .eyebrow {
   color: #6f7774;
   font-size: 13px;
@@ -247,6 +284,15 @@ h2 {
   overflow: auto;
 }
 
+.emptyState {
+  background: #fbfaf7;
+  border: 1px dashed #d8d3c8;
+  border-radius: 8px;
+  color: #68726e;
+  font-weight: 700;
+  padding: 18px;
+}
+
 table {
   border-collapse: collapse;
   min-width: 680px;
@@ -375,5 +421,10 @@ label {
 
   .topbar {
     align-items: flex-start;
+  }
+
+  .topActions {
+    align-items: flex-end;
+    flex-direction: column-reverse;
   }
 }

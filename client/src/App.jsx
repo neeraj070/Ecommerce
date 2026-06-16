@@ -35,18 +35,33 @@ export function App() {
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
+  const [health, setHealth] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    refreshHealth();
+  }, []);
 
   useEffect(() => {
     setAuthToken(auth?.token);
     if (auth) refreshData();
   }, [auth]);
 
+  async function refreshHealth() {
+    try {
+      const { data } = await api.get('/health');
+      setHealth(data);
+    } catch {
+      setHealth({ status: 'offline', database: { state: 'unreachable' } });
+    }
+  }
+
   async function refreshData() {
     setLoading(true);
     setMessage('');
     try {
+      await refreshHealth();
       const [productRes, orderRes, userRes] = await Promise.all([
         api.get('/products'),
         api.get('/orders'),
@@ -113,9 +128,14 @@ export function App() {
             <p className="eyebrow">Admin workspace</p>
             <h1>{tab[0].toUpperCase() + tab.slice(1)}</h1>
           </div>
-          <button className="iconButton" title="Refresh data" onClick={refreshData}>
-            <RefreshCcw size={18} />
-          </button>
+          <div className="topActions">
+            <span className={`dbStatus ${health?.database?.state === 'connected' ? 'online' : 'offline'}`}>
+              MongoDB {health?.database?.state || 'checking'}
+            </span>
+            <button className="iconButton" title="Refresh data" onClick={refreshData}>
+              <RefreshCcw size={18} />
+            </button>
+          </div>
         </header>
 
         {message && <div className="notice">{message}</div>}
@@ -209,6 +229,7 @@ function Metric({ label, value }) {
 function Products({ products, onSaved }) {
   const [form, setForm] = useState(emptyProduct);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
 
   function update(field, value) {
     setForm(current => ({ ...current, [field]: value }));
@@ -217,20 +238,27 @@ function Products({ products, onSaved }) {
   async function submit(event) {
     event.preventDefault();
     setSaving(true);
-    await api.post('/products', {
-      ...form,
-      price: Number(form.price),
-      countInStock: Number(form.countInStock)
-    });
-    setForm(emptyProduct);
-    setSaving(false);
-    onSaved();
+    setError('');
+    try {
+      await api.post('/products', {
+        ...form,
+        price: Number(form.price),
+        countInStock: Number(form.countInStock)
+      });
+      setForm(emptyProduct);
+      onSaved();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Product could not be saved');
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
     <div className="stack">
       <form className="formGrid" onSubmit={submit}>
         <h2><PackagePlus size={18} /> Add Product</h2>
+        {error && <div className="notice error wide">{error}</div>}
         {['name', 'sku', 'category', 'brand', 'price', 'countInStock', 'imageUrl'].map(field => (
           <label key={field}>
             {field}
@@ -245,15 +273,18 @@ function Products({ products, onSaved }) {
       </form>
       <div className="productGrid">
         {products.map(product => <ProductCard key={product._id} product={product} />)}
+        {!products.length && <EmptyState text="No products in MongoDB yet. Add the first product above." />}
       </div>
     </div>
   );
 }
 
 function ProductCard({ product }) {
+  const image = product.imageUrl || 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d';
+
   return (
     <article className="productCard">
-      <img src={`${product.imageUrl}?auto=format&fit=crop&w=500&q=80`} alt={product.name} />
+      <img src={`${image}?auto=format&fit=crop&w=500&q=80`} alt={product.name} />
       <div>
         <span className="pill">{product.category}</span>
         <h3>{product.name}</h3>
@@ -279,6 +310,7 @@ function Orders({ orders, onSaved }) {
 function OrderTable({ orders, onStatus, compact = false }) {
   return (
     <div className="tableWrap">
+      {!orders.length && <EmptyState text="No orders found in MongoDB." />}
       <table>
         <thead>
           <tr>
@@ -316,6 +348,7 @@ function OrderTable({ orders, onStatus, compact = false }) {
 function UsersView({ users }) {
   return (
     <div className="tableWrap">
+      {!users.length && <EmptyState text="No users found in MongoDB." />}
       <table>
         <thead>
           <tr>
@@ -340,4 +373,8 @@ function UsersView({ users }) {
       </table>
     </div>
   );
+}
+
+function EmptyState({ text }) {
+  return <div className="emptyState">{text}</div>;
 }
