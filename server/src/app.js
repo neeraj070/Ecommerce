@@ -1,6 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
+import { getDBStatus } from './config/db.js';
 import morgan from 'morgan';
 import { errorHandler, notFound } from './middleware/errorHandler.js';
 import { authRoutes } from './routes/authRoutes.js';
@@ -21,7 +22,13 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'mern-ecommerce-api' });
+  const database = getDBStatus();
+
+  res.json({
+    status: database.state === 'connected' ? 'ok' : 'degraded',
+    service: 'mern-ecommerce-api',
+    database
+  });
 });
 
 app.use('/api/auth', authRoutes);

@@ -1,5 +1,12 @@
 import mongoose from 'mongoose';
 
+const connectionStates = {
+  0: 'disconnected',
+  1: 'connected',
+  2: 'connecting',
+  3: 'disconnecting'
+};
+
 export async function connectDB() {
   const uri = process.env.MONGO_URI;
 
@@ -8,6 +15,16 @@ export async function connectDB() {
   }
 
   mongoose.set('strictQuery', true);
-  await mongoose.connect(uri);
+  await mongoose.connect(uri, {
+    serverSelectionTimeoutMS: 10000
+  });
   console.log(`MongoDB connected: ${mongoose.connection.host}`);
+}
+
+export function getDBStatus() {
+  return {
+    state: connectionStates[mongoose.connection.readyState] || 'unknown',
+    host: mongoose.connection.host || null,
+    name: mongoose.connection.name || null
+  };
 }
